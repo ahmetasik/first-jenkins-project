@@ -1,19 +1,25 @@
+
 import { test } from '@playwright/test';
 
-test.describe('@smoke Test Group', () => {
-  test('1', async ({ page }) => {
-    test.beforeEach(async ({page}) => {
-        await page.goto("https://practice.cydeo.com");
-    })
-    test.afterEach(async ({page}) => {
-    })
-  });
+test.describe('Test Group1', () => {
 
-  test('Get title', async ({ page }) => {
+   // create beforeEach for tests
+   test.beforeEach(async ({ page }) => { 
+        await page.goto("https://practice.cydeo.com/");
+   });
+
+   // create afterEach for tests
+    test.afterEach(async ({ page }) => { 
+        await page.waitForTimeout(3000);
+   });
+
+    
+  test('Getting the title of the page', async ({ page }) => {
     console.log(await page.title());
   });
 
-  test('Get URL', async ({ page }) => {
-    console.log(page.url);
+  test('Getting the current URL of the page', async ({ page }) => {
+    console.log(page.url());
   });
+
 });
